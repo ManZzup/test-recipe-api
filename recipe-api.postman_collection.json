@@ -1,0 +1,34 @@
+
+{
+	"info": {
+		"_postman_id": "e89f4671-b0b6-4e43-b1be-9a79f9fc809f",
+		"name": "Recipe API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "719204"
+	},
+	"item": [
+		{
+			"name": "Recipe - List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/recipes?difficulty=hard",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"recipes"
+					],
+					"query": [
+						{
+							"key": "difficulty",
+							"value": "hard"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
