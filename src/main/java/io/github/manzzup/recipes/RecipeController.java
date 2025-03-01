@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 public class RecipeController {
@@ -36,7 +39,20 @@ public class RecipeController {
     }
 
     @GetMapping("/recipes")
-    public List<Recipe> index() {
-        return recipes;
+    public List<Recipe> recipeList(String difficulty) {
+		List<Recipe> sortedRecipes = new ArrayList<>(recipes);
+        sortedRecipes.sort(null);
+		
+        if (difficulty == null) {
+            return recipes;
+        }
+
+		if(difficulty.isEmpty()){
+			throw new IllegalArgumentException("Difficulty cannot be empty");
+		}
+
+        return recipes.stream()
+                .filter(recipe -> recipe.getDifficulty().equals(difficulty))
+                .toList();
     }
 }

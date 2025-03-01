@@ -2,7 +2,7 @@ package io.github.manzzup.recipes;
 
 import java.util.List;
 
-public class Recipe {
+public class Recipe implements Comparable<Recipe> {
     private String name;
     private String description;
     private String difficulty;
@@ -56,5 +56,10 @@ public class Recipe {
 
     public void setSteps(List<String> steps) {
         this.steps = steps;
+    }
+
+    @Override
+    public int compareTo(Recipe other) {
+        return Integer.compare(this.position, other.position);
     }
 } 
